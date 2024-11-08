@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PlantCard from "./PlantCard";
 import NewPlantForm from "./NewPlantForm";
+import Search from "./Search";
 
 function PlantList() {
-  
+  const [searchQuery, setSearchQuery] = useState("");
   const [plants, setPlants] = useState([]);
 
   // Function to handle adding a new plant
@@ -53,12 +54,23 @@ function PlantList() {
     }
   };
 
+  // Update the search query based on user input
+  const handleSearchChange = (query) => {
+    setSearchQuery(query); // Update the search query state
+  };
+
+
   
   return (
   <div>
+    <Search onSearchChange={handleSearchChange} />
     <NewPlantForm handleAddPlant={handleAddPlant} />
     <ul className="cards">
-       {plants.map((plant) => (
+       {plants
+       .filter((plant) =>
+        plant.name.toLowerCase().includes(searchQuery.toLowerCase()) // Case-insensitive search
+      )
+       .map((plant) => (
           <PlantCard key={plant.id} plant={plant} handleUpdate={updatePlant} />
         ))}
     </ul>
