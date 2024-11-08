@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import PlantCard from "./PlantCard";
+import NewPlantForm from "./NewPlantForm";
 
 function PlantList() {
   
   const [plants, setPlants] = useState([]);
+
+  // Function to handle adding a new plant
+  const handleAddPlant = (newPlant) => {
+    setPlants((prevPlants) => [...prevPlants, newPlant]);
+  };
+
 
   // Fetch plant data on component mount (GET request)
   useEffect(() => {
@@ -46,12 +53,16 @@ function PlantList() {
     }
   };
 
+  
   return (
+  <div>
+    <NewPlantForm handleAddPlant={handleAddPlant} />
     <ul className="cards">
        {plants.map((plant) => (
           <PlantCard key={plant.id} plant={plant} handleUpdate={updatePlant} />
         ))}
     </ul>
+    </div>
   );
 }
 
