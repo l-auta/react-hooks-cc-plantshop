@@ -1,6 +1,6 @@
 import React from "react";
 
-function PlantCard({ plant, handleUpdate }) {
+function PlantCard({ plant }) {
 
   return (
     <li className="card" data-testid="plant-item">
@@ -12,8 +12,7 @@ function PlantCard({ plant, handleUpdate }) {
       ) : (
         <button>Out of Stock</button>
       )}
-      {/* Button to edit or update plant
-      <button onClick={() => handleUpdate(plant.id)}>Edit</button> */}
+  
     </li>
   );
 }
