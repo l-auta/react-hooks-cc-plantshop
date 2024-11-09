@@ -58,8 +58,6 @@ function PlantList() {
   const handleSearchChange = (query) => {
     setSearchQuery(query); // Update the search query state
   };
-
-
   
   return (
   <div>
